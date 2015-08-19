@@ -3,42 +3,44 @@ Bundler.require
 
 ActiveRecord::Base.establish_connection(
   :adapter => 'postgresql',
-  :database => 'restfulsongs'
+  :database => 'restfulgalaxies'
 )
 
 get '/' do
-  @song = Song.new
-  @song.name = 'Little Secrets'
-  @song.artist = 'Passion Pit'
-  @song.save
-  @song.to_json
+  @galaxy = Galaxy.new
+  @galaxy.name = 'Milky Way'
+  @galaxy.stars = '200-400 billion'
+  @galaxy.distance = '100,000 light years'
+  @galaxy.save
+  @galaxy.to_json
 end
 
 
-get '/api/songs' do
-  Song.all.to_json
+get '/api/galaxies' do
+  Galaxy.all.to_json
 end
 
-get'/api/songs/:id' do
+get'/api/galaxies/:id' do
   puts params
-  Song.find(params[:id]).to_json
+  Galaxy.find(params[:id]).to_json
 end
 
-post '/api/songs' do
+post '/api/galaxies' do
 puts params
-Song.create({
+Galaxy.create({
   :name => params[:name],
-  :artist => params[:artist]
+  :stars => params[:artist],
+  :distance => params[:distance]
 }).to_json
 end
 
-patch '/api/songs/:id' do
-  song_args = { :name => params[:name], :artist => params[:artist] }
-  @song = Song.find(params[:id])
-  @song.update(song_args)
-  @song.to_json
+patch '/api/galaxies/:id' do
+  galaxy_args = { :name => params[:name], :stars => params[:stars], :distance => params[:distance] }
+  @galaxy = Galaxy.find(params[:id])
+  @galaxy.update(galaxy_args)
+  @galaxy.to_json
 end
 
-delete '/api/songs/:id' do
-  Song.destroy(params[:id]).to_json
+delete '/api/galaxies/:id' do
+  Galaxy.destroy(params[:id]).to_json
 end

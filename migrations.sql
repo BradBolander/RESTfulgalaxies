@@ -1,4 +1,4 @@
-CREATE DATABASE restfulsongs;
-\c restfulsongs
+CREATE DATABASE restfulgalaxies;
+\c restfulgalaxies
 
-CREATE TABLE songs (id SERIAL PRIMARY KEY, name VARCHAR(255), artist VARCHAR(255));
+CREATE TABLE galaxies (id SERIAL PRIMARY KEY, name VARCHAR(255), stars VARCHAR(255), distance VARCHAR(255));

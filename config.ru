@@ -1,4 +1,4 @@
 require './app'
-require './Song'
+require './Galaxy'
 
 run Sinatra::Application
